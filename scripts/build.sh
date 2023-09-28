@@ -1,1 +1,1 @@
-x86_64-w64-mingw32-gcc ./Main.cpp ./MemoryUtil.cpp ./FpsPatcher.cpp -o dist/FrameUnlocker.exe --verbose -lstdc++ -static
+x86_64-w64-mingw32-gcc ./main.cpp ./memory_util.cpp ./fps_patcher.cpp -o dist/FramePatcher.exe --verbose -lstdc++ -static

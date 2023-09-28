@@ -1,4 +1,4 @@
-#include "FpsPatcher.hpp"
+#include "fps_patcher.hpp"
 
 FpsPatcher::FpsPatcher(HANDLE hProcess, uintptr_t lpBaseOfDll)
 {
@@ -6,9 +6,9 @@ FpsPatcher::FpsPatcher(HANDLE hProcess, uintptr_t lpBaseOfDll)
     this->lpBaseOfDll = lpBaseOfDll;
 
     static uintptr_t addresses[] = {
-        0x03425078,
-        0x03425088,
-        0x03425098
+        0x03425078, /* delay for 30 fps */
+        0x03425088, /* delay for 60 fps */
+        0x03425098  /* delay for 120 fps */
     };
 
     this->fpsAddresses = addresses;
@@ -35,7 +35,7 @@ void FpsPatcher::GetFps()
         /* Calculate the actual fps */
         int actualFps = 1000000 / fps;
 
-        printf("[FpsPatcher::GetFps] Read fps from address %p: %d fps (%d)\n", (void*)fpsAddress, actualFps, fps);
+        printf("[FpsPatcher::GetFps] Read fps from address %p: %d fps (delay: %d)\n", (void*)fpsAddress, actualFps, fps);
         
     }
 }
@@ -75,6 +75,6 @@ void FpsPatcher::SetFps(int fps)
 
     }
 
-    printf("[FpsPatcher::SetFps] Updated fps to %d (%d)\n", fps, newFps);
+    printf("[FpsPatcher::SetFps] Updated fps to %d (delay: %d)\n", fps, newFps);
 
 }

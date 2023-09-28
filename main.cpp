@@ -1,5 +1,5 @@
-#include "MemoryUtil.hpp"
-#include "FpsPatcher.hpp"
+#include "memory_util.hpp"
+#include "fps_patcher.hpp"
 
 int main(int argc, char* argv[])
 {
